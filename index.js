@@ -5,13 +5,16 @@ var shapePosition = [100, 800];
 var g = 2.5;
 var gravity;
 var jumping = 0;
+var objxpos = 0;
 var objA = {};
 var objB = {};
 var yplus = 0;
+var speed = 0.3;
 class testses {
   constructor (data={}) {
     this.x = data.x || 0;
     this.y = data.y || 0;
+    this.a = data.a || 0;
   }
   
   move() {
@@ -124,20 +127,22 @@ jumpdae();
 Math.rad = function(degrees) {
   return degrees * Math.PI / 180;
 };
-for (var i = 1; i < 16; i++) {
-  objB['shape' + i] = new testses({'x': 1000, 'y': 450 + yplus});
-  yplus += 25
+for (var i = 1; i < 32; i++) {
+  objB['shape' + i] = new testses({'x': 1000, 'y': 450 + yplus, 'a': speed});
+  if (yplus > 0 ) yplus = (yplus + 12.5) * -1; else yplus = (yplus - 12.5) * -1;
+  speed = speed - 0.012;
 }
 
-/*setInterval(function() {
+setInterval(function() {
   for(var Bmove in objB) {
     var center = [1000, 450];
     var dist = Math.sqrt((objB[Bmove].x-center[0])**2+(objB[Bmove].y-center[1])**2);
-    var centerDeg = (Math.atan2(objB[Bmove].y-center[1], objB[Bmove].x-center[0])/Math.PI*180+270+1)%360;
-    objB[Bmove] = [-Math.sin(Math.rad(centerDeg))*dist, Math.cos(Math.rad(centerDeg))*dist];
+    var centerDeg = (Math.atan2(objB[Bmove].y-center[1], objB[Bmove].x-center[0])*180/Math.PI-(objB[Bmove].a%360)+810)%360;
+    objB[Bmove].x = Math.sin(Math.rad(centerDeg))*dist+center[0]
+    objB[Bmove].y = -Math.cos(Math.rad(centerDeg))*dist+center[1];
   }
 },1)
-*/
+
 
 setInterval( function () {
   c.clearRect(0,0,1500,900)
@@ -158,7 +163,7 @@ setInterval( function () {
   c.fillStyle = '#000'
   c.font = '20px Oswald';
   c.fillText('[제목 추천받음]', 1330,30);
-  c.fillText('v0.21b', 1330,60);
+  c.fillText('v0.3b', 1330,60);
   c.fillText('Tanks for Spotky1004', 1330,90);
 
   c.lineWidth = 5;
@@ -170,8 +175,6 @@ setInterval( function () {
     if ((objA[asdf].y - shapePosition[1] >= 19 && objA[asdf].y - shapePosition[1] <= 24 && -50 <= (objA[asdf].x - shapePosition[0]) && (objA[asdf].x - shapePosition[0]) <= 20 ) && !(keypress['38'])) {
       jumping = 0;
     }
-  }
-  for (var asdf in objA) {
     if (objA[asdf].y - shapePosition[1] >= 19 && objA[asdf].y - shapePosition[1] <= 24 && -50 <= (objA[asdf].x - shapePosition[0]) && (objA[asdf].x - shapePosition[0]) <= 20 ) {
       g = 2.5;
       shapePosition[1] = objA[asdf].y - 25;
@@ -181,8 +184,6 @@ setInterval( function () {
     if ((objB[asdf].y - shapePosition[1] >= 19 && objB[asdf].y - shapePosition[1] <= 24 && -50 <= (objB[asdf].x - shapePosition[0]) && (objB[asdf].x - shapePosition[0]) <= 20 ) && !(keypress['38'])) {
       jumping = 0;
     }
-  }
-  for (var asdf in objB) {
     if (objB[asdf].y - shapePosition[1] >= 19 && objB[asdf].y - shapePosition[1] <= 24 && -50 <= (objB[asdf].x - shapePosition[0]) && (objB[asdf].x - shapePosition[0]) <= 20 ) {
       g = 2.5;
       shapePosition[1] = objB[asdf].y - 25;
