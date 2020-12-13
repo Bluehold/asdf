@@ -188,10 +188,10 @@ setInterval( function () {
       shapePosition[1] = objB[asdf].y - 25;
     }
   }
-  if (keypress['38']) jumping = 1;
-  if (keypress['37'] && shapePosition[0] > 10) shapePosition[0] -= 2;
+  if (keypress['38'] || keypress['87']) jumping = 1;
+  if ((keypress['37'] || keypress['65']) && shapePosition[0] > 10) shapePosition[0] -= 2;
   if (jumping == 1 && shapePosition[1] > 10)  shapePosition[1] -= 5;
-  if (keypress['39'] && shapePosition[0] < 1470) shapePosition[0] += 2;
+  if ((keypress['39'] || keypress['68']) && shapePosition[0] < 1470) shapePosition[0] += 2;
   if (shapePosition[1] < 870) {
     gravity = 0.4*g**2;
     shapePosition[1] += gravity;
