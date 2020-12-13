@@ -163,11 +163,12 @@ setInterval( function () {
   c.fillStyle = '#000'
   c.font = '20px Oswald';
   c.fillText('[제목 추천받음]', 1330,30);
-  c.fillText('v0.3b', 1330,60);
+  c.fillText('v0.31b', 1330,60);
   c.fillText('Tanks for Spotky1004', 1330,90);
 
   c.lineWidth = 5;
 
+  if (keypress['38'] || keypress['87']) jumping = 1;
   if ((gravity > 4 && Math.abs(860 - shapePosition[1]) < 3) || (shapePosition[1] == 870 && !(keypress['38']))) {
     jumping = 0;
   }
@@ -189,7 +190,9 @@ setInterval( function () {
       shapePosition[1] = objB[asdf].y - 25;
     }
   }
-  if (keypress['38'] || keypress['87']) jumping = 1;
+  if (shapePosition[1] <= 10) {
+    g = 4;
+  }
   if ((keypress['37'] || keypress['65']) && shapePosition[0] > 10) shapePosition[0] -= 2;
   if (jumping == 1 && shapePosition[1] > 10)  shapePosition[1] -= 5;
   if ((keypress['39'] || keypress['68']) && shapePosition[0] < 1470) shapePosition[0] += 2;
