@@ -162,12 +162,6 @@ setInterval( function () {
   c.fillText('Tanks for Spotky1004', 1330,90);
 
   c.lineWidth = 5;
-  c.strokeStyle = '#0a88fe'
-  c.fillStyle = '#00ffff'
-  c.beginPath();
-  c.rect(shapePosition[0], shapePosition[1], 20, 20);
-  c.stroke();
-  c.fill();
 
   if ((gravity > 4 && Math.abs(860 - shapePosition[1]) < 3) || (shapePosition[1] == 870 && !(keypress['38']))) {
     jumping = 0;
@@ -229,6 +223,13 @@ setInterval( function () {
     c.fill();
     c.closePath();
     } 
+
+    c.strokeStyle = '#0a88fe'
+    c.fillStyle = '#00ffff'
+    c.beginPath();
+    c.rect(shapePosition[0], shapePosition[1], 20, 20);
+    c.stroke();
+    c.fill();
 }, 1);
 
 keypress = {};
