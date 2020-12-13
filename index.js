@@ -158,7 +158,7 @@ setInterval( function () {
   c.fillStyle = '#000'
   c.font = '20px Oswald';
   c.fillText('[제목 추천받음]', 1330,30);
-  c.fillText('v0.2b', 1330,60);
+  c.fillText('v0.21b', 1330,60);
   c.fillText('Tanks for Spotky1004', 1330,90);
 
   c.lineWidth = 5;
